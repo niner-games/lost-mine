@@ -1,0 +1,6 @@
+# PhpStorm
+.idea
+
+# Other
+.DS_Store
+Thumbs.db
