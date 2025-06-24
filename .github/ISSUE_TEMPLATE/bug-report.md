@@ -1,47 +1,23 @@
 ---
 name: Bug report
 about: Something is wrong
-title: 
-type: "bug"
-labels: bug
+title: ''
+labels: ''
 assignees: mrfatguy
 
 ---
 
 Repeated title or possibly a summary of the description.
 
-## Necessary steps
+Steps to reproduce:
 
 1. Go to _one_ → _two_ → _three_.
 2. Click on _four_.
 3. Scroll to _five_.
 4. See _six_.
 
-## Expected effects
+What should happen? What is actually happening?
 
-What should happen.
+If possible, add a screenshot (<kbd>PrtSc</kbd>) or a screencast (_LICEcap_, _ScreenToGif_).
 
-## Real effects
-
-What is actually happening.
-
-## Screenshot or screencast
-
-If possible, add a screenshot or animation of your steps. Press <kbd>PrtSc</kbd> on your keyboard to grab a screenshot or use programs like _LICEcap_, _ScreenToGif_ or a similar software to capture an animation from the screen, save it as a .gif and attach it here.
-
-## Environment
-
-### Computer
-
-- System: **Windows 11 Pro**
-- Browser: **Microsoft Edge**
-
-### Mobile device
-
-- Device: **Motorola moto g84 5G**
-- System: **Android 14**
-- Browser: **Microsoft Edge**
-
-## Additional information
-
-Any additional information or comments, if any.
+Provide information about device, system version and browser only, if it matters (i.e. bug cannot be reproduced everywhere or is client-specific).
