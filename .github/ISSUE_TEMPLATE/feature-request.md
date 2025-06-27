@@ -1,6 +1,7 @@
 ---
 name: Feature request
 about: Some new functionality
+type: feature
 title: ''
 labels: ''
 assignees: mrfatguy
@@ -23,4 +24,4 @@ Acceptance Criteria:
 
 If possible, add a screenshot (<kbd>PrtSc</kbd>) or a screencast (_LICEcap_, _ScreenToGif_).
 
-Provide information about device, system version and browser only, if it matters (i.e. bug cannot be reproduced everywhere or is client-specific).
+Provide device, system and browser information only, if it matters (i.e. this is a client, browser, system or device-specific feature).
