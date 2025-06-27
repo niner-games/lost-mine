@@ -1,9 +1,10 @@
 ---
 name: Bug report
-about: Something is wrong
+about: Something is wrong!
+type: bug
 title: ''
 labels: ''
-assignees: MadejaMaciej
+assignees: mrfatguy
 
 ---
 
@@ -18,6 +19,6 @@ Steps to reproduce:
 
 What should happen? What is actually happening?
 
-If possible, add a screenshot (<kbd>PrtSc</kbd>) or a screencast (_LICEcap_, _ScreenToGif_).
+If possible and required, add a screenshot (<kbd>PrtSc</kbd>) or a screencast (_LICEcap_, _ScreenToGif_).
 
-Provide information about device, system version and browser only, if it matters (i.e. bug cannot be reproduced everywhere or is client-specific).
+Provide device, system and browser information only, if it matters (i.e. bug cannot be reproduced everywhere).
