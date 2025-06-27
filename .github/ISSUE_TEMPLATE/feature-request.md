@@ -22,6 +22,4 @@ Acceptance Criteria:
 - **When** what
 - **Then** what
 
-If possible, add a screenshot (<kbd>PrtSc</kbd>) or a screencast (_LICEcap_, _ScreenToGif_).
-
-Provide device, system and browser information only, if it matters (i.e. this is a client, browser, system or device-specific feature).
+Provide device, system and browser information only, if it matters (i.e. this is a feature specific to one domain).
