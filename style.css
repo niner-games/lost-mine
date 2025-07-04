@@ -1,0 +1,40 @@
+body, html {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+    overflow: hidden;
+    user-select: none; /* No text select -- Standard syntax */
+    -webkit-user-select: none; /* No text select -- Mac Safari */
+    -ms-user-select: none; /* No text select -- IE 10 and IE 11 */
+    background-image: url('background.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+#main {
+    display: flex;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+}
+
+#logo, #gears, #subtitle {
+    text-align: center;
+}
+
+#logo {
+    margin-bottom: 77px;
+}
+
+#subtitle {
+    margin-top: 7px;
+    font-family: "Oswald", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-weight: 200;
+    font-size: 33px;
+    color: #fff;
+}

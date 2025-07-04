@@ -2,7 +2,7 @@
 
 <p align="center">
     <a href="https://www.ninergames.com/" target="_blank">
-        <img src="LOGO.png" alt="Logo of Niner Games" width="300" height="238">
+        <img src="logo-company.png" alt="Logo of Niner Games" width="300" height="238">
     </a>
 </p>
 
