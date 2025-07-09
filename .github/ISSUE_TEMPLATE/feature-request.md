@@ -12,14 +12,14 @@ Repeated title or possibly a summary of the description.
 
 Narrative:
 
-- **As a** who
-- **I want** do
-- **To** achieve
+- **As** a who .
+- **I want to** do .
+- **So that** I can .
 
 Acceptance Criteria:
 
-- **Given** what
-- **When** what
-- **Then** what
+- **Given** I'm .
+- **When** I .
+- **Then** what .
 
 Provide device, system and browser information only, if it matters (i.e. this is a feature specific to one domain).
