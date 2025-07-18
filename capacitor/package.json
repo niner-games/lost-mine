@@ -1,8 +1,7 @@
 {
-  "name": "lost-mine-capacitor",
+  "name": "lost-mine",
   "version": "1.0.0",
-  "description": "Wraps Lost Mine Phaser game using Capacitor",
-  "main": "index.js",
+  "description": "Lost Mine game",
   "scripts": {
     "setup": "npx cap add android && npx cap add ios && npx cap sync",
     "build": "cd android && ./gradlew assembleDebug"
