@@ -1,0 +1,119 @@
+name: Build All Platforms
+
+on:
+  push:
+    tags:
+      - '[0-9]+.[0-9]+.[0-9]+'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'App version (e.g. 0.1.7)'
+        required: true
+        default: '0.0.0'
+
+jobs:
+
+  windows:
+    name: 🖥️ Build EXE
+    runs-on: windows-latest
+    env:
+      VERSION: ${{ github.event.inputs.version || github.ref_name }}
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - working-directory: ./electron
+        run: |
+          npm ci
+          npx electron-builder --win
+
+      - run: |
+          mkdir -p releases
+          mv electron/dist/*.exe releases/lost-mine-${{ env.VERSION }}.exe
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lost-mine-win-${{ env.VERSION }}
+          path: releases/lost-mine-${{ env.VERSION }}.exe
+
+  android:
+    name: 🤖 Build APK
+    runs-on: ubuntu-latest
+    env:
+      VERSION: ${{ github.ref_name }}
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - working-directory: ./capacitor
+        run: |
+          npm ci
+          npx cap add android
+          npx cap sync
+
+      - name: 🧬 Update Android Version
+        run: |
+          MAJOR=$(echo "${{ env.VERSION }}" | cut -d. -f1)
+          sed -i 's/versionName ".*"/versionName "${{ env.VERSION }}"/' capacitor/android/app/build.gradle
+          sed -i "s/versionCode [0-9]\+/versionCode $MAJOR/" capacitor/android/app/build.gradle
+
+      - uses: android-actions/setup-android@v3
+
+      - working-directory: ./capacitor/android
+        run: ./gradlew assembleDebug
+
+      - run: |
+          mkdir -p releases
+          cp capacitor/android/app/build/outputs/apk/debug/app-debug.apk releases/lost-mine-${{ env.VERSION }}.apk
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lost-mine-android-${{ env.VERSION }}
+          path: releases/lost-mine-${{ env.VERSION }}.apk
+
+  ios:
+    name: 🍎 Build IPA
+    runs-on: macos-latest
+    env:
+      VERSION: ${{ github.ref_name }}
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - working-directory: ./capacitor
+        run: |
+          npm ci
+          npx cap add ios
+          npx cap sync ios
+
+      - name: 🧬 Update iOS Version
+        run: |
+          /usr/libexec/PlistBuddy -c "Set :CFBundleShortVersionString $VERSION" capacitor/ios/App/App/Info.plist
+
+      - working-directory: ./capacitor/ios
+        run: |
+          xcodebuild -workspace App/App.xcworkspace \
+            -scheme App \
+            -configuration Debug \
+            -sdk iphoneos \
+            -derivedDataPath build
+
+      - working-directory: ./capacitor/ios/build/Build/Products/Debug-iphoneos
+        run: |
+          mkdir -p ../../../releases
+          cp -R App.app Payload/
+          zip -r ../../../releases/lost-mine-${{ env.VERSION }}.ipa Payload
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lost-mine-ios-${{ env.VERSION }}
+          path: releases/lost-mine-${{ env.VERSION }}.ipa
