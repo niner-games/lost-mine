@@ -14,7 +14,7 @@ on:
 jobs:
 
   windows:
-    name: 🖥️ Build EXE
+    name: :️Build for Windows
     runs-on: windows-latest
     env:
       VERSION: ${{ github.event.inputs.version || github.ref_name }}
@@ -27,8 +27,11 @@ jobs:
 
       - working-directory: ./electron
         run: |
+          echo "Building version $VERSION for Windows"
+          jq ".version = \"${VERSION}\"" package.json > temp.json && mv temp.json package.json
           npm ci
-          npx electron-builder --win
+          npm prune --production
+          npx electron-builder --win --x64 --asar
 
       - run: |
           mkdir -p releases
@@ -40,7 +43,7 @@ jobs:
           path: releases/lost-mine-${{ env.VERSION }}.exe
 
   android:
-    name: 🤖 Build APK
+    name: Build for Android
     runs-on: ubuntu-latest
     env:
       VERSION: ${{ github.ref_name }}
@@ -78,7 +81,7 @@ jobs:
           path: releases/lost-mine-${{ env.VERSION }}.apk
 
   ios:
-    name: 🍎 Build IPA
+    name: Build for iOS
     runs-on: macos-latest
     env:
       VERSION: ${{ github.ref_name }}
