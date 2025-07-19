@@ -19,11 +19,13 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
 
-      - working-directory: ./electron
+      - name: Install & Build Electron App
+        working-directory: ./electron
         shell: pwsh
         run: |
           Write-Host "Building version $env:VERSION for Windows"
@@ -34,12 +36,8 @@ jobs:
           npm prune --production
           npx electron-builder --win --x64 --asar
 
-      - shell: pwsh
-        run: |
-          mkdir -p releases
-          Move-Item "electron/dist/*.exe" "releases/lost-mine-$env:VERSION.exe" -Force
-
-      - uses: actions/upload-artifact@v4
+      - name: Upload Windows Build Artifact
+        uses: actions/upload-artifact@v4
         with:
           name: lost-mine-win-${{ env.VERSION }}
-          path: releases/lost-mine-${{ env.VERSION }}.exe
+          path: electron/dist/*.exe

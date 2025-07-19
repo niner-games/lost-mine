@@ -19,11 +19,13 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
 
-      - working-directory: ./capacitor
+      - name: Install & Prepare Capacitor iOS
+        working-directory: ./capacitor
         run: |
           npm ci
           npm install @capacitor/ios
@@ -34,7 +36,8 @@ jobs:
         run: |
           /usr/libexec/PlistBuddy -c "Set :CFBundleShortVersionString $VERSION" capacitor/ios/App/App/Info.plist
 
-      - working-directory: ./capacitor/ios
+      - name: Build iOS App
+        working-directory: ./capacitor/ios
         run: |
           xcodebuild -workspace App/App.xcworkspace \
             -scheme App \
@@ -42,13 +45,15 @@ jobs:
             -sdk iphoneos \
             -derivedDataPath build
 
-      - working-directory: ./capacitor/ios/build/Build/Products/Debug-iphoneos
+      - name: Package .ipa for Upload
+        working-directory: ./capacitor/ios/build/Build/Products/Debug-iphoneos
         run: |
-          mkdir -p ../../../releases
+          mkdir Payload
           cp -R App.app Payload/
-          zip -r ../../../releases/lost-mine-${{ env.VERSION }}.ipa Payload
+          zip -r lost-mine-${{ env.VERSION }}.ipa Payload
 
-      - uses: actions/upload-artifact@v4
+      - name: Upload iOS Artifact
+        uses: actions/upload-artifact@v4
         with:
           name: lost-mine-ios-${{ env.VERSION }}
-          path: releases/lost-mine-${{ env.VERSION }}.ipa
+          path: ./capacitor/ios/build/Build/Products/Debug-iphoneos/lost-mine-${{ env.VERSION }}.ipa

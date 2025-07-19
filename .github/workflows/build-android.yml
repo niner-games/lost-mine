@@ -19,11 +19,13 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
 
-      - working-directory: ./capacitor
+      - name: Install & Prepare Capacitor Android
+        working-directory: ./capacitor
         run: |
           npm ci
           npm install @capacitor/android
@@ -38,14 +40,12 @@ jobs:
 
       - uses: android-actions/setup-android@v3
 
-      - working-directory: ./capacitor/android
+      - name: Build Android APK
+        working-directory: ./capacitor/android
         run: ./gradlew assembleDebug
 
-      - run: |
-          mkdir -p releases
-          cp capacitor/android/app/build/outputs/apk/debug/app-debug.apk releases/lost-mine-${{ env.VERSION }}.apk
-
-      - uses: actions/upload-artifact@v4
+      - name: Upload Android Artifact
+        uses: actions/upload-artifact@v4
         with:
           name: lost-mine-android-${{ env.VERSION }}
-          path: releases/lost-mine-${{ env.VERSION }}.apk
+          path: capacitor/android/app/build/outputs/apk/debug/app-debug.apk
