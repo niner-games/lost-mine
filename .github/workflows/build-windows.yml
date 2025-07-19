@@ -27,7 +27,8 @@ jobs:
         shell: pwsh
         run: |
           Write-Host "Building version $env:VERSION for Windows"
-          jq ".version = \"$env:VERSION\"" package.json | Out-File -Encoding utf8 temp.json
+          $jqExpr = '.version = "' + $env:VERSION + '"'
+          jq $jqExpr package.json | Out-File -Encoding utf8 temp.json
           Move-Item -Force temp.json package.json
           npm ci
           npm prune --production

@@ -26,10 +26,11 @@ jobs:
       - working-directory: ./capacitor
         run: |
           npm ci
+          npm install @capacitor/android
           npx cap add android
           npx cap sync
 
-      - name: 🧬 Update Android Version
+      - name: Update Android Version
         run: |
           MAJOR=$(echo "${{ env.VERSION }}" | cut -d. -f1)
           sed -i 's/versionName ".*"/versionName "${{ env.VERSION }}"/' capacitor/android/app/build.gradle

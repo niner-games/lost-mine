@@ -26,10 +26,11 @@ jobs:
       - working-directory: ./capacitor
         run: |
           npm ci
+          npm install @capacitor/ios
           npx cap add ios
           npx cap sync ios
 
-      - name: 🧬 Update iOS Version
+      - name: Update iOS Version
         run: |
           /usr/libexec/PlistBuddy -c "Set :CFBundleShortVersionString $VERSION" capacitor/ios/App/App/Info.plist
 
