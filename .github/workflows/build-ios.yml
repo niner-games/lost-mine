@@ -1,0 +1,53 @@
+name: Build for iOS
+
+on:
+  push:
+    tags:
+      - '[0-9]+.[0-9]+.[0-9]+'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'App version (e.g. 0.1.7)'
+        required: true
+        default: '0.0.0'
+
+jobs:
+  ios:
+    runs-on: macos-latest
+    env:
+      VERSION: ${{ github.event.inputs.version != '' && github.event.inputs.version || github.ref_name }}
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - working-directory: ./capacitor
+        run: |
+          npm ci
+          npx cap add ios
+          npx cap sync ios
+
+      - name: 🧬 Update iOS Version
+        run: |
+          /usr/libexec/PlistBuddy -c "Set :CFBundleShortVersionString $VERSION" capacitor/ios/App/App/Info.plist
+
+      - working-directory: ./capacitor/ios
+        run: |
+          xcodebuild -workspace App/App.xcworkspace \
+            -scheme App \
+            -configuration Debug \
+            -sdk iphoneos \
+            -derivedDataPath build
+
+      - working-directory: ./capacitor/ios/build/Build/Products/Debug-iphoneos
+        run: |
+          mkdir -p ../../../releases
+          cp -R App.app Payload/
+          zip -r ../../../releases/lost-mine-${{ env.VERSION }}.ipa Payload
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lost-mine-ios-${{ env.VERSION }}
+          path: releases/lost-mine-${{ env.VERSION }}.ipa
