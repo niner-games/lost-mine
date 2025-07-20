@@ -33,6 +33,11 @@ jobs:
             throw "Audit failed due to critical vulnerabilities"
           }
 
+      - name: Trace deprecated packages
+        shell: pwsh
+        run: |
+          npm ls inflight glob rimraf @npmcli/move-file || echo "Some packages not found"
+
       - name: Install & Build Electron App
         working-directory: ./electron
         shell: pwsh
@@ -45,7 +50,7 @@ jobs:
           npm update
           npm ci
           npm prune --production
-          npx electron-builder --win --x64 --asar
+          npx electron-builder --win --x64
 
       - name: Upload Windows Build Artifact
         uses: actions/upload-artifact@v4
