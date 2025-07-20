@@ -22,10 +22,15 @@
         }
     },
     "scripts": {
-        "build": "npx electron-builder --win"
+        "build": "npx electron-builder --win",
+        "audit": "npm audit --audit-level=critical",
+        "outdated": "npm outdated"
+    },
+    "engines": {
+        "node": ">=20.0.0"
     },
     "devDependencies": {
-        "electron": "^28.3.2",
-        "electron-builder": "^24.6.0"
+        "electron": "37.2.3",
+        "electron-builder": "26.0.12"
     }
 }

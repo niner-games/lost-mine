@@ -24,6 +24,15 @@ jobs:
         with:
           node-version: '20'
 
+      - name: Install dependencies & Run npm audit
+        shell: pwsh
+        run: |
+          npm install
+          npm audit --audit-level=critical
+          if ($LASTEXITCODE -ne 0) {
+            throw "Audit failed due to critical vulnerabilities"
+          }
+
       - name: Install & Build Electron App
         working-directory: ./electron
         shell: pwsh
@@ -32,6 +41,8 @@ jobs:
           $jqExpr = '.version = "' + $env:VERSION + '"'
           jq $jqExpr package.json | Out-File -Encoding utf8 temp.json
           Move-Item -Force temp.json package.json
+          npm outdated
+          npm update
           npm ci
           npm prune --production
           npx electron-builder --win --x64 --asar
