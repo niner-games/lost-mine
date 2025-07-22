@@ -1,11 +1,16 @@
 {
     "name": "lost-mine",
     "version": "1.0.0",
+    "author": {
+        "name": "Niner Games",
+        "email": "hello@ninergames.com",
+        "url": "https://lostmine.cc/"
+    },
+    "license": "UNLICENSED",
     "main": "main.js",
     "build": {
         "asar": true,
         "productName": "Lost Mine",
-        "version": "${env.VERSION}",
         "directories": {
             "output": "dist"
         },
@@ -34,9 +39,10 @@
         "electron": "37.2.3",
         "electron-builder": "26.0.12"
     },
-    "overrides": {
-        "glob": "11.0.3",
-        "rimraf": "5.0.10",
-        "@npmcli/move-file": "3.0.0"
-    }
+    "files": [
+        "main.js",
+        "../src/**/*",
+        "!**/node_modules/*/{test,__tests__,example}",
+        "!**/.gitkeep"
+    ]
 }
