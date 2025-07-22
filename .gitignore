@@ -1,6 +1,14 @@
 # PhpStorm
 .idea
 
-# Other
+# System files
 .DS_Store
 Thumbs.db
+
+# Electron build artifacts
+electron/node_modules/
+electron/dist/
+
+# Capacitor artifacts
+capacitor/node_modules/
+capacitor/dist/
