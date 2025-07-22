@@ -1,6 +1,22 @@
 # PhpStorm
 .idea
 
+# Electron
+/electron/dist/
+/electron/node_modules/
+
+# Capacitor
+**/capacitor/www/
+**/capacitor/android/
+/android/
+/ios/
+
+# Node.js
+node_modules/
+dist/
+build/
+
+
 # Other
 .DS_Store
 Thumbs.db
