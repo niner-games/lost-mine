@@ -1,7 +1,27 @@
 # PhpStorm
 .idea
 
+<<<<<<< HEAD
 # System files
+=======
+# Electron
+/electron/dist/
+/electron/node_modules/
+
+# Capacitor
+**/capacitor/www/
+**/capacitor/android/
+/android/
+/ios/
+
+# Node.js
+node_modules/
+dist/
+build/
+
+
+# Other
+>>>>>>> main
 .DS_Store
 Thumbs.db
 

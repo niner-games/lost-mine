@@ -3,7 +3,7 @@ html, body {
     padding: 0;
     height: 100%;
     overflow: hidden;
-    background-color: #2f2f2f; /* Optional: still useful for canvas transparency or loading delays */
+    background-color: #271100;
 }
 
 canvas {
