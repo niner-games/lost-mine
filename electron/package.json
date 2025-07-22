@@ -1,52 +1,40 @@
 {
-    "name": "lost-mine",
     "version": "0.1.0",
+    "name": "lost-mine",
+    "productName": "Lost Mine",
     "author": {
         "name": "Niner Games",
         "email": "hello@ninergames.com",
         "url": "https://lostmine.cc/"
     },
-    "license": "UNLICENSED",
     "main": "main.js",
     "build": {
-        "asar": true,
-        "productName": "Lost Mine",
-        "directories": {
-            "output": "dist"
-        },
+        "appId": "com.ninergames.lostmine",
         "win": {
-            "icon": "icon.ico",
-            "target": [
-                {
-                    "target": "portable",
-                    "arch": ["x64"]
-                }
-            ]
+            "target": "nsis"
         },
-        "portable": {
-            "artifactName": "lost-mine-${version}.exe"
-        }
+        "extraResources": [
+            {
+                "from": "../game",
+                "to": "game"
+            }
+        ],
+        "artifactName": "Lost Mine ${version}.${ext}"
     },
-    "scripts": {
-        "build": "npx electron-builder --win",
-        "start": "electron ."
-    },
-    "engines": {
-        "node": ">=20.0.0"
+    "nsis": {
+        "oneClick": true,
+        "perMachine": false,
+        "allowElevation": true,
+        "allowToChangeInstallationDirectory": false
     },
     "devDependencies": {
-        "electron": "37.2.3",
-        "electron-builder": "26.0.12"
+        "electron": "^29.0.0",
+        "electron-builder": "^26.0.12",
+        "electron-packager": "^17.1.2"
     },
-    "overrides": {
-        "glob": "11.0.3",
-        "rimraf": "5.0.10",
-        "@npmcli/move-file": "3.0.0"
-    },
-    "files": [
-        "main.js",
-        "../src/**/*",
-        "!**/node_modules/*/{test,__tests__,example}",
-        "!**/.gitkeep"
-    ]
+    "scripts": {
+        "start": "electron .",
+        "build": "electron-builder",
+        "pack": "npx electron-packager . phaser-game --platform=win32 --arch=x64 --overwrite"
+    }
 }

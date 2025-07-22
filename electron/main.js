@@ -1,23 +1,15 @@
-const path = require('path');
 const { app, BrowserWindow } = require('electron');
+const path = require('path');
 
-function createWindow () {
+app.whenReady().then(() => {
     const win = new BrowserWindow({
-        fullscreen: true,
-        frame: false,
+        width: 800,
+        height: 600,
         webPreferences: {
-            sandbox: true,
-            nodeIntegration: false,
             contextIsolation: true
         }
     });
 
     win.loadFile(path.join(__dirname, '../game/index.html'));
-
-    if (!app.isPackaged) {
-        win.webContents.openDevTools();
-    }
-}
-
-app.commandLine.appendSwitch('autoplay-policy', 'no-user-gesture-required');
-app.whenReady().then(createWindow);
+    win.webContents.openDevTools();
+});
