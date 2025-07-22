@@ -1,6 +1,6 @@
 {
     "name": "lost-mine",
-    "version": "1.0.0",
+    "version": "0.1.0",
     "author": {
         "name": "Niner Games",
         "email": "hello@ninergames.com",
@@ -29,8 +29,7 @@
     },
     "scripts": {
         "build": "npx electron-builder --win",
-        "audit": "npm audit --audit-level=critical",
-        "outdated": "npm outdated"
+        "start": "electron ."
     },
     "engines": {
         "node": ">=20.0.0"
@@ -38,6 +37,11 @@
     "devDependencies": {
         "electron": "37.2.3",
         "electron-builder": "26.0.12"
+    },
+    "overrides": {
+        "glob": "11.0.3",
+        "rimraf": "5.0.10",
+        "@npmcli/move-file": "3.0.0"
     },
     "files": [
         "main.js",

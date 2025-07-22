@@ -1,7 +1,7 @@
 {
   "name": "lost-mine",
-  "version": "1.0.0",
-  "description": "Lost Mine game",
+  "version": "0.1.0",
+  "description": "Lost Mine",
   "scripts": {
     "setup": "npx cap add android && npx cap add ios && npx cap sync",
     "build": "cd android && ./gradlew assembleDebug"
