@@ -1,34 +1,34 @@
-# PhpStorm
-.idea
+# Node
+dist/
+build/
+node_modules/
 
-<<<<<<< HEAD
-# System files
-=======
+# PhpStorm
+.idea/
+
 # Electron
+/electron/out/
 /electron/dist/
 /electron/node_modules/
 
 # Capacitor
-**/capacitor/www/
-**/capacitor/android/
-/android/
-/ios/
+capacitor/dist/
+capacitor/node_modules/
+/capacitor/www/
+/capacitor//ios/
+/capacitor/android/
 
-# Node.js
-node_modules/
-dist/
-build/
+# Gradle and Android Studio
+*.iml
+.gradle/
+local.properties
 
+# Logs
+npm-debug.log*
+yarn-error.log*
 
-# Other
->>>>>>> main
+# Junk
+*.swp
+*.swo
 .DS_Store
 Thumbs.db
-
-# Electron build artifacts
-electron/node_modules/
-electron/dist/
-
-# Capacitor artifacts
-capacitor/node_modules/
-capacitor/dist/

@@ -1,6 +1,6 @@
 {
-  "appId": "com.ninergames.lostmine",
-  "appName": "Lost Mine",
-  "webDir": "../game",
-  "bundledWebRuntime": false
+    "webDir": "../game",
+    "appName": "Lost Mine",
+    "bundledWebRuntime": false,
+    "appId": "com.ninergames.lostmine"
 }
