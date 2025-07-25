@@ -1,4 +1,4 @@
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, globalShortcut  } = require('electron');
 const path = require('path');
 
 app.whenReady().then(() => {
@@ -6,13 +6,22 @@ app.whenReady().then(() => {
         frame: false,
         fullscreen: true,
         webPreferences: {
-            contextIsolation: true
+            contextIsolation: true,
+            nodeIntegration: false
         }
     });
 
-    win.loadFile(path.join(__dirname, 'game/index.html'));
+    const indexPath = app.isPackaged
+        ? path.join(process.resourcesPath, 'game', 'index.html')
+        : path.join(__dirname, '../vite/dist/index.html');
 
-    if (!app.isPackaged) {
-        win.webContents.openDevTools();
-    }
+    win.loadFile(indexPath)
+        .then(() => {
+            globalShortcut.register('CommandOrControl+Shift+C', () => {
+                win.webContents.openDevTools();
+            });
+        })
+        .catch((err) => {
+            console.error('Failed to load file:', err);
+        });
 });
