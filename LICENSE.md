@@ -1,6 +1,6 @@
 BSD 2-Clause License
 
-Copyright (c) 2024 by Niner Games.
+Copyright (c) 2024-2025 by Niner Games.
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:

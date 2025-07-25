@@ -1,42 +1,41 @@
 {
+    "version": "0.1.0",
     "name": "lost-mine",
-    "version": "1.0.0",
+    "productName": "Lost Mine",
+    "description": "Lost Mine is a single-player adventure game set in the heart of Arizona's legendary Superstition Mountains. Inspired by the enduring mystery of the Lost Dutchman Mine, players embark on a journey to uncover secrets left behind by Jacob Waltz—an elusive prospector who claimed his mine was so rich, the gold could be extracted with a knife. Guided only by cryptic clues and ancient maps, you must explore rugged terrain, solve environmental puzzles, and avoid traps as you search for Weaver’s Needle and the hidden treasure beneath its shadow. With immersive visuals, ambient storytelling, and a touch of historical folklore, Lost Mine delivers an atmospheric experience for those drawn to legends, solitude, and buried gold.",
+    "author": {
+        "name": "Niner Games",
+        "email": "hello@ninergames.com",
+        "url": "https://lostmine.cc/"
+    },
+    "license": "UNLICENSED",
     "main": "main.js",
     "build": {
-        "asar": true,
-        "productName": "Lost Mine",
-        "version": "${env.VERSION}",
-        "directories": {
-            "output": "dist"
-        },
+        "appId": "com.ninergames.lostmine",
         "win": {
-            "icon": "icon.ico",
-            "target": [
-                {
-                    "target": "portable",
-                    "arch": ["x64"]
-                }
-            ]
+            "target": "nsis"
         },
-        "portable": {
-            "artifactName": "lost-mine-${version}.exe"
-        }
+        "extraResources": [
+            {
+                "from": "../game",
+                "to": "game"
+            }
+        ],
+        "artifactName": "Lost Mine ${version}.${ext}"
     },
-    "scripts": {
-        "build": "npx electron-builder --win",
-        "audit": "npm audit --audit-level=critical",
-        "outdated": "npm outdated"
-    },
-    "engines": {
-        "node": ">=20.0.0"
+    "nsis": {
+        "oneClick": true,
+        "perMachine": false,
+        "allowElevation": true,
+        "allowToChangeInstallationDirectory": false
     },
     "devDependencies": {
-        "electron": "37.2.3",
-        "electron-builder": "26.0.12"
+        "electron": "^37.2.3",
+        "electron-builder": "^26.0.18",
+        "@electron/packager": "^18.3.6"
     },
-    "overrides": {
-        "glob": "11.0.3",
-        "rimraf": "5.0.10",
-        "@npmcli/move-file": "3.0.0"
+    "scripts": {
+        "start": "electron .",
+        "build": "electron-builder"
     }
 }

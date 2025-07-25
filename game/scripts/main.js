@@ -16,6 +16,7 @@ window.addEventListener('load', function ()
 class Boot extends Phaser.Scene
 {
 	preload() {
+
 		this.load.image('logo', 'images/boot/logo.png');
 	}
 

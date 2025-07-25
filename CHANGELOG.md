@@ -2,7 +2,8 @@
 
 ### Bugs
 
-- 
+- [#2](https://github.com/niner-games/lost-mine/issues/2): Fix Wiki article about translations ([Mr. Fat Guy](https://github.com/mrfatguy))
+- [#1](https://github.com/niner-games/lost-mine/issues/1): CFix missing assets in Wiki ([Mr. Fat Guy](https://github.com/mrfatguy))
 
 ### Features
 
