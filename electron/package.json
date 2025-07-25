@@ -12,16 +12,23 @@
     "main": "main.js",
     "build": {
         "appId": "com.ninergames.lostmine",
-        "win": {
-            "target": "nsis"
-        },
         "extraResources": [
             {
                 "from": "../vite/dist",
                 "to": "game"
             }
         ],
-        "artifactName": "Lost Mine ${version}.${ext}"
+        "artifactName": "Lost Mine ${version}.${ext}",
+        "win": {
+            "target": "nsis",
+            "icon": "icon.ico"
+        },
+        "mac": {
+            "icon": "icon.icns"
+        },
+        "linux": {
+            "icon": "icon.png"
+        }
     },
     "nsis": {
         "oneClick": true,
