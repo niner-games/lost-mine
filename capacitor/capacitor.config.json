@@ -1,5 +1,5 @@
 {
-    "webDir": "../game",
+    "webDir": "../vite/dist",
     "appName": "Lost Mine",
     "bundledWebRuntime": false,
     "appId": "com.ninergames.lostmine"

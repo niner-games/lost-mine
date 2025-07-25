@@ -10,7 +10,7 @@ app.whenReady().then(() => {
         }
     });
 
-    win.loadFile(path.join(__dirname, '../game/index.html'));
+    win.loadFile(path.join(__dirname, 'game/index.html'));
 
     if (!app.isPackaged) {
         win.webContents.openDevTools();

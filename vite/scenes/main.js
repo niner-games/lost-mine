@@ -1,6 +1,8 @@
+import Phaser from 'phaser';
+
 window.addEventListener('load', function ()
 {
-	var game = new Phaser.Game({
+	const game = new Phaser.Game({
 		width: 3840,
 		height: 1858,
 		type: Phaser.AUTO,
@@ -16,7 +18,6 @@ window.addEventListener('load', function ()
 class Boot extends Phaser.Scene
 {
 	preload() {
-
 		this.load.image('logo', 'images/boot/logo.png');
 	}
 
