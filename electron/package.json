@@ -1,24 +1,24 @@
 {
     "version": "0.1.0",
     "name": "lost-mine",
-    "description": "A single-player adventure set deep in Arizona’s Superstition Mountains. Inspired by the legend of the Lost Dutchman Mine, players unravel cryptic clues, brave rugged terrain, and dodge ancient traps in search of Jacob Waltz’s buried gold. With immersive visuals and ambient storytelling, it’s a journey through folklore, solitude, and treasure beneath Weaver’s Needle.",
+    "description": "A single-player adventure game set back in 1849 and in the heart of Arizona’s legendary Superstition Mountains. Inspired by the legend and enduring mystery of the lost gold mine, players embark on a journey in search of Jacob Waltz’s hidden gold treasure.",
     "author": {
         "name": "Niner Games",
         "email": "hello@ninergames.com",
         "url": "https://ninergames.com/lost-mine/"
     },
     "license": "UNLICENSED",
-    "productName": "Lost Mine",
     "main": "main.js",
     "build": {
+        "productName": "Lost Mine",
         "appId": "com.ninergames.lostmine",
+        "artifactName": "Lost Mine ${version}.${ext}",
         "extraResources": [
             {
                 "from": "../vite/dist",
                 "to": "game"
             }
         ],
-        "artifactName": "Lost Mine ${version}.${ext}",
         "win": {
             "target": "nsis",
             "icon": "icon.ico"
