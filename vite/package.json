@@ -1,7 +1,7 @@
 {
     "version": "0.1.0",
     "name": "lost-mine",
-    "description": "Lost Mine is a single-player adventure game set in the heart of Arizona's legendary Superstition Mountains. Inspired by the enduring mystery of the Lost Dutchman Mine, players embark on a journey to uncover secrets left behind by Jacob Waltz—an elusive prospector who claimed his mine was so rich, the gold could be extracted with a knife. Guided only by cryptic clues and ancient maps, you must explore rugged terrain, solve environmental puzzles, and avoid traps as you search for Weaver’s Needle and the hidden treasure beneath its shadow. With immersive visuals, ambient storytelling, and a touch of historical folklore, Lost Mine delivers an atmospheric experience for those drawn to legends, solitude, and buried gold.",
+    "description": "A single-player adventure set deep in Arizona’s Superstition Mountains. Inspired by the legend of the Lost Dutchman Mine, players unravel cryptic clues, brave rugged terrain, and dodge ancient traps in search of Jacob Waltz’s buried gold. With immersive visuals and ambient storytelling, it’s a journey through folklore, solitude, and treasure beneath Weaver’s Needle.",
     "author": {
         "name": "Niner Games",
         "email": "hello@ninergames.com",
