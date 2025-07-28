@@ -9,7 +9,3 @@
 
 - [#5](https://github.com/niner-games/lost-mine/issues/5): Create build process for web application ([Mr. Fat Guy](https://github.com/mrfatguy))
 - [#3](https://github.com/niner-games/lost-mine/issues/3): Create initial repo and build process ([Mr. Fat Guy](https://github.com/mrfatguy))
-
-### Tasks
-
-- 
