@@ -13,7 +13,7 @@
         "@capacitor/core": "^7.4.2"
     },
     "devDependencies": {
-        "@capacitor/cli": "^7.4.1"
+        "@capacitor/cli": "^8.0.2"
     },
     "scripts": {
         "sync": "npx cap sync android",
