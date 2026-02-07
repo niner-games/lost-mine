@@ -1,0 +1,25 @@
+name: Remove labels from Dependabot security PRs
+
+on:
+  pull_request:
+    types: [opened, labeled]
+
+jobs:
+  clean-labels:
+    runs-on: ubuntu-latest
+    if: github.actor == 'dependabot[bot]'
+    steps:
+      - name: Remove all labels
+        uses: actions-ecosystem/action-remove-labels@v1
+        with:
+          labels: |
+            dependencies
+            security
+            javascript
+            ruby
+            python
+            go
+            rust
+            php
+            dotnet
+            github-actions
