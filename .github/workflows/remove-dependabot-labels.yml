@@ -1,25 +1,29 @@
-name: Remove labels from Dependabot security PRs
+name: Remove labels auto-created by Dependabot
 
 on:
   pull_request:
     types: [opened, labeled]
+  workflow_dispatch:
 
 jobs:
   clean-labels:
     runs-on: ubuntu-latest
-    if: github.actor == 'dependabot[bot]'
+    permissions:
+      contents: read
+      pull-requests: write
+    if: github.event_name == 'workflow_dispatch' || github.actor == 'dependabot[bot]'
     steps:
       - name: Remove all labels
         uses: actions-ecosystem/action-remove-labels@v1
         with:
           labels: |
+            github-actions
             dependencies
-            security
             javascript
-            ruby
+            security
             python
-            go
+            dotnet
+            ruby
             rust
             php
-            dotnet
-            github-actions
+            go
