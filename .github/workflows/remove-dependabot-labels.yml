@@ -1,4 +1,4 @@
-name: Remove labels auto-created by Dependabot
+name: Remove Dependabot labels
 
 on:
   pull_request:
@@ -13,17 +13,17 @@ jobs:
       pull-requests: write
     if: github.event_name == 'workflow_dispatch' || github.actor == 'dependabot[bot]'
     steps:
-      - name: Remove all labels
-        uses: actions-ecosystem/action-remove-labels@v1
-        with:
-          labels: |
-            github-actions
-            dependencies
-            javascript
-            security
-            python
-            dotnet
-            ruby
-            rust
-            php
-            go
+      - name: Remove labels
+        run: |
+          gh api -X DELETE repos/${{ github.repository }}/labels/github-actions || true
+          gh api -X DELETE repos/${{ github.repository }}/labels/dependencies || true
+          gh api -X DELETE repos/${{ github.repository }}/labels/javascript || true
+          gh api -X DELETE repos/${{ github.repository }}/labels/security || true
+          gh api -X DELETE repos/${{ github.repository }}/labels/python || true
+          gh api -X DELETE repos/${{ github.repository }}/labels/dotnet || true
+          gh api -X DELETE repos/${{ github.repository }}/labels/ruby || true
+          gh api -X DELETE repos/${{ github.repository }}/labels/rust || true
+          gh api -X DELETE repos/${{ github.repository }}/labels/php || true
+          gh api -X DELETE repos/${{ github.repository }}/labels/go || true
+        env:
+          GH_TOKEN: ${{ github.token }}
